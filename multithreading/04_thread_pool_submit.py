@@ -1,11 +1,12 @@
 import time
 
 
-def div(diviser, limit):
-    print(f'Started div={diviser}')
+def div(divider, limit):
+    print(f'Started div={divider}')
 
     for x in range(1, limit):
-        if x % diviser == 0:
-            print(f'divisor={diviser}, x={x}')
+        if x % divider == 0:
+            print(f'divider={divider}, x={x}')
         time.sleep(0.2)
-    print(f'Ended div={diviser}')
+    print(f'Ended div={divider}')
+    
