@@ -19,7 +19,8 @@ from multithreading.decorators import measure_time, async_measure_time
 
 async def tick():
     print('Tick')
-    await asyncio.sleep(1)
+    # Этот sleep является корутином!
+    await asyncio.sleep(1)  # Когда мы вызываем корутин, вызов будет передаваться вызывающему коду.
     print('Tock')
 
 
