@@ -36,10 +36,16 @@ async def photos_by_album(task_name, album, session):
 
 @async_measure_time
 async def main():
-    async with aiohttp.ClientSession() as session:
-        photos = await photos_by_album('Task 1', 3, session)
-        print_photo_title(photos)
+    # async with aiohttp.ClientSession() as session:
+    #     photos = await photos_by_album('Task 1', 3, session)
+    #     print_photo_title(photos)
 
+    # Посчитаем количество фотографий.
+    async with aiohttp.ClientSession() as session:
+        photos_in_album = await asyncio.gather(*(photos_by_album(f'Task {i + 1}', album, session)
+                                                 for i, album in enumerate(range(2, 30))))
+        photos_count = sum([len(cur) for cur in photos_in_album])
+        print(f'{photos_count=}')
 
 if __name__ == '__main__':
     asyncio.run(main())
